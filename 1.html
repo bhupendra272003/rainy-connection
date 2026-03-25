@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainy Night Connections</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        
+        body {
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(135deg, #0a0f1e, #111827);
+            color: white;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        /* Header */
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(90deg, #ff6b8b, #ffb7c5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Grid */
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        /* Card */
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: .3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        /* Button */
+        
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff6b8b, #ff8e9e);
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        /* Rain canvas */
+        
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="rain"></canvas>
+
+    <div class="header">
+        <h1>🌧️ Rainy Night Vibe 🌙</h1>
+        <p>Connect under moonlight</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Avinash Gaur</h3>
+            <p>@you___know__me__001</p>
+            <a class="btn" href="https://www.instagram.com/you___know__me__001/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Soft Heart Official</h3>
+            <p>@soft___heart___official</p>
+            <a class="btn" href="https://www.instagram.com/soft___heart___official/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Sumit SA</h3>
+            <p>@___sumit___sa</p>
+            <a class="btn" href="https://www.instagram.com/___sumit___sa/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Soniya</h3>
+            <p>@_soniya_63332</p>
+            <a class="btn" href="https://www.instagram.com/_soniya_63332/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Bhupendra Singh Deora</h3>
+            <p>@bhupendra.singh.deora</p>
+            <a class="btn" href="https://www.instagram.com/bhupendra.singh.deora/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Black Lover</h3>
+            <p>@black_lover_sellu_29</p>
+            <a class="btn" href="https://www.instagram.com/black_lover_sellu_29/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Villain</h3>
+            <p>@villa.in704</p>
+            <a class="btn" href="https://www.instagram.com/villa.in704/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Riya</h3>
+            <p>@_its_r1ya______</p>
+            <a class="btn" href="https://www.instagram.com/_its_r1ya______/" target="_blank">Connect</a>
+        </div>
+
+        <div class="card">
+            <h3>Vishal</h3>
+            <p>@vishal_keshrawani</p>
+            <a class="btn" href="https://www.instagram.com/vishal_keshrawani/" target="_blank">Connect</a>
+        </div>
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById("rain");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        let rain = [];
+        for (let i = 0; i < 80; i++) {
+            rain.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                l: Math.random() * 10,
+                s: Math.random() * 3 + 2
+            })
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "rgba(255,255,255,0.2)";
+            ctx.lineWidth = 1;
+
+            rain.forEach(r => {
+                ctx.beginPath();
+                ctx.moveTo(r.x, r.y);
+                ctx.lineTo(r.x, r.y + r.l);
+                ctx.stroke();
+                r.y += r.s;
+                if (r.y > canvas.height) r.y = 0;
+            });
+
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+
+</body>
+
+</html>
